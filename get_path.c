@@ -9,7 +9,9 @@
 char *get_path(char *command)
 {
 	char *path, *path_env, **paths;
-	paths = com_rr(path_env, ":");
+
+	path_env = _getenv("PATH");
+	paths = com_arr(path_env, ":");
 	if (command != NULL && paths != NULL)
 	{
 		if (command[0] == '/')

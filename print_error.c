@@ -9,7 +9,7 @@
 
 int print_error(char *command)
 {
-	if (comman != NULL)
+	if (command != NULL)
 	{
 		write(1, shell_name, strlen(shell_name));
 		write(1, ": ", 2);

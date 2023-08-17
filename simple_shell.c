@@ -9,7 +9,7 @@ char *shell_name;
   * Return: 0 if shell exits;
   */
 
-int main(int ac, char **av)
+int main(__attribute__((unused))int ac, char **av)
 {
 	char *line = NULL, **commands = NULL, *path = NULL;
 	char *prompt = "(OURSHELL) : ";
@@ -18,7 +18,6 @@ int main(int ac, char **av)
 	pid_t pid;
 
 	shell_name = strdup(av[0]);
-	void(ac);
 	while (1)
 	{
 		write(1, prompt, strlen(prompt));

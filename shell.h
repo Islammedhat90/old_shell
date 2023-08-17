@@ -9,6 +9,7 @@
 #include <errno.h>
 
 extern char *shell_name;
+extern char **environ;
 
 char **com_arr(char *line, char *delim);
 char *_getenv(char *var);
