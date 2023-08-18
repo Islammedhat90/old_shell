@@ -11,7 +11,7 @@ int print_error(char *command)
 {
 	if (command != NULL)
 	{
-		write(1, shell_name, strlen(shell_name));
+		write(1, "hello", strlen("hello"));
 		write(1, ": ", 2);
 		perror(command);
 	}

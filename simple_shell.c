@@ -1,6 +1,5 @@
 #include "shell.h"
 
-char *shell_name;
 
 /**
   * main - simple_shell initializztion.
@@ -17,37 +16,34 @@ int main(__attribute__((unused))int ac, char **av)
 	ssize_t read;
 	pid_t pid;
 
-	shell_name = strdup(av[0]);
+	__attribute__((unused))char *shell_name = strdup(av[0]);
+
 	while (1)
 	{
-		write(1, prompt, strlen(prompt));
-		fflush(stdout);
+		printf("%s", prompt);
 		read = getline(&line, &n, stdin);
-		line[strlen(line) - 1] = '\0';
 		if (read == -1)
 			break;
+		commands = com_arr(line, " \n");
+		path = get_path(commands[0]);
+		if (path != NULL)
 		{
-			commands = com_arr(line, NULL);
-			path = get_path(commands[0]);
-			if (path != NULL)
+			pid = fork();
+			if (pid == 0)
+				exe_fun(path, commands, NULL);
+			else if (pid > 0)
 			{
-				pid = fork();
-				if (pid == 0)
-					exe_fun(path, commands, NULL);
-				else if (pid > 0)
-				{
-					int status;
+				int status;
 
-					wait(&status);
-				}
+				wait(&status);
 			}
-			else
-				print_error(commands[0]);
 		}
+		else
+			print_error(commands[0]);
 	}
-	free(shell_name);
 	free(line);
-	free(commands);
+	free(shell_name);
+	free_arr(commands);
 	free(path);
 	return (0);
 }

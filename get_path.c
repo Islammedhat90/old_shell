@@ -8,30 +8,42 @@
 
 char *get_path(char *command)
 {
-	char *path, *path_env, **paths;
+	char *path = NULL, *path_env = NULL, **paths = NULL;
+	int i = 0;;
 
 	path_env = _getenv("PATH");
-	paths = com_arr(path_env, ":");
-	if (command != NULL && paths != NULL)
+	paths = com_arr(path_env, ":\n");
+	if (command != NULL)
 	{
 		if (command[0] == '/')
 		{
-			if (access(command, X_OK) == 0)
+			if (access(command, F_OK) == 0)
+			{
 				return (command);
+			}
 			return (NULL);
 		}
-		while (*paths != NULL)
+		for (; paths[i] != NULL; i++)
 		{
-			path = malloc(sizeof(char) * (strlen(*paths) + strlen(command) + 1));
-			strcpy(path, *paths);
+			path = malloc(sizeof(char) * (strlen(paths[i]) + strlen(command) + 2));
+			if (path == NULL)
+			{
+				perror("Couldn't allocate memory");
+				free_arr(paths);
+				exit(EXIT_FAILURE);
+			}
+			strcpy(path, paths[i]);
 			strcat(path, "/");
 			strcat(path, command);
-			if (access(path, X_OK) == 0)
+			if (access(path, F_OK) == 0)
 			{
+				free_arr(paths);
 				return (path);
 			}
-			paths++;
+			free(path);
 		}
 	}
+	free_arr(paths);
+	printf("get path end\n");
 	return (NULL);
 }

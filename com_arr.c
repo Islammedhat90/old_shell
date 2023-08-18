@@ -11,31 +11,55 @@
 char **com_arr(char *line, char *delim)
 {
 	char *token = NULL, **commands = NULL, *linecopy = NULL;
-	int command_count = 0, i = 0;
+	int command_count = 0, i = 0, j;
 
-	if (delim == NULL)
-		delim = " ";
 	linecopy = strdup(line);
+	if (linecopy == NULL)
+	{
+		free(line);
+		perror("Couldn't allocate memory");
+		exit(EXIT_FAILURE);
+	}
 	token = strtok(linecopy, delim);
 	while (token != NULL)
 	{
 		command_count++;
-		token = strtok(linecopy, delim);
+		token = strtok(NULL, delim);
 	}
 	commands = malloc(sizeof(char *) * (command_count + 1));
 	if (commands == NULL)
 	{
+		free(linecopy);
+		free(line);
 		perror("Couldn't allocate memory");
 		exit(EXIT_FAILURE);
 	}
 	linecopy = strdup(line);
+	if (linecopy == NULL)
+	{
+		free(line);
+		free(commands);
+		perror("Couldn't allocate memory");
+		exit(EXIT_FAILURE);
+	}
 	token = strtok(linecopy, delim);
 	for (i = 0; token != NULL; i++)
 	{
 		commands[i] = strdup(token);
+		if (commands[i] == NULL)
+		{
+			for (j = i - 1; j >= 0; j--)
+				free(commands[j]);
+			free(line);
+			free(linecopy);
+			free(commands);
+			perror("Error allocating memory");
+			exit(EXIT_FAILURE);
+		}
 		token = strtok(NULL, delim);
 	}
+	commands[command_count] = NULL;
+	printf("line in commands is %s\n", line);
 	free(linecopy);
 	return (commands);
 }
-

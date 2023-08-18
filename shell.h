@@ -11,8 +11,10 @@
 extern char *shell_name;
 extern char **environ;
 
+int free_arr(char **arr);
 char **com_arr(char *line, char *delim);
 char *_getenv(char *var);
+char *handle_line(char *line);
 char *get_path(char *command);
 int print_error(char *command);
 int exe_fun(char *path, char **commands, char **envp);
