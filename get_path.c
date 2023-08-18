@@ -44,6 +44,40 @@ char *get_path(char *command)
 		}
 	}
 	free_arr(paths);
+	free(path);
 	printf("get path end\n");
 	return (NULL);
+}
+
+void handle_path(char **commands)
+{
+	char *path = NULL;
+	pid_t pid;
+
+	if (commands != NULL)
+	{
+		path = get_path(commands[0]);
+		if (path != NULL)
+		{
+			pid = fork();
+			if (pid == 0)
+				exe_fun(path, commands, NULL);
+			else if (pid > 0)
+			{
+				int status;
+
+				wait(&status);
+				free(path);
+				return;
+			}
+			else
+			{
+				print_error(commands[0]);
+				free(path);
+			}
+		}
+		print_error(commands[0]);
+		return;
+	}
+	return;
 }

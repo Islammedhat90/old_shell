@@ -10,40 +10,40 @@
 
 char **com_arr(char *line, char *delim)
 {
-	char *token = NULL, **commands = NULL, *linecopy = NULL;
-	int command_count = 0, i = 0, j;
+	char *token = NULL, **commands = NULL, *linecopy = NULL, *copy = NULL;
+	int command_count = 0, i = 0, j, len;
 
-	linecopy = strdup(line);
+	len = strlen(line);
+	linecopy = malloc(len + 1);
 	if (linecopy == NULL)
 	{
-		free(line);
 		perror("Couldn't allocate memory");
-		exit(EXIT_FAILURE);
+		return (NULL);
 	}
+	copy = malloc(len + 1);
+	if (copy == NULL)
+	{
+		perror("Couldn't allocate memory");
+		free(linecopy);
+		return (NULL);
+	}
+	strcpy(linecopy, line);
+	strcpy(copy, line);
 	token = strtok(linecopy, delim);
 	while (token != NULL)
 	{
 		command_count++;
 		token = strtok(NULL, delim);
 	}
+	printf("commands number are %i\n", command_count);
 	commands = malloc(sizeof(char *) * (command_count + 1));
 	if (commands == NULL)
 	{
 		free(linecopy);
-		free(line);
 		perror("Couldn't allocate memory");
 		exit(EXIT_FAILURE);
 	}
-	free(linecopy);
-	linecopy = strdup(line);
-	if (linecopy == NULL)
-	{
-		free(line);
-		free(commands);
-		perror("Couldn't allocate memory");
-		exit(EXIT_FAILURE);
-	}
-	token = strtok(linecopy, delim);
+	token = strtok(copy, delim);
 	for (i = 0; token != NULL; i++)
 	{
 		commands[i] = strdup(token);
@@ -51,7 +51,6 @@ char **com_arr(char *line, char *delim)
 		{
 			for (j = i - 1; j >= 0; j--)
 				free(commands[j]);
-			free(line);
 			free(linecopy);
 			free(commands);
 			perror("Error allocating memory");
@@ -60,7 +59,7 @@ char **com_arr(char *line, char *delim)
 		token = strtok(NULL, delim);
 	}
 	commands[command_count] = NULL;
-	printf("line in commands is %s\n", line);
+	free(copy);
 	free(linecopy);
 	return (commands);
 }

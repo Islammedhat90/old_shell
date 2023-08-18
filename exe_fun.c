@@ -13,6 +13,8 @@ int exe_fun(char *path, char **commands, char **envp)
 	if (execve(path, commands, envp) == -1)
 	{
 		print_error(path);
+		free(path);
+		free_arr(commands);
 		exit(errno);
 	}
 	return (0);

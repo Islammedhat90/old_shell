@@ -16,7 +16,12 @@ char **com_arr(char *line, char *delim);
 char *_getenv(char *var);
 char *handle_line(char *line);
 char *get_path(char *command);
+void handle_path(char **commands);
 int print_error(char *command);
 int exe_fun(char *path, char **commands, char **envp);
+
+int builtin_checker(char *command);
+int handle_builtin(int m);
+void my_exit(char *command);
 
 #endif

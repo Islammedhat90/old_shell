@@ -14,7 +14,7 @@ int main(__attribute__((unused))int ac, char **av)
 	char *prompt = "(OURSHELL) : ";
 	size_t n;
 	ssize_t read;
-	pid_t pid;
+	int b = 0;
 
 	__attribute__((unused))char *shell_name = strdup(av[0]);
 
@@ -24,26 +24,24 @@ int main(__attribute__((unused))int ac, char **av)
 		read = getline(&line, &n, stdin);
 		if (read == -1)
 			break;
+		if (line[0] == '\n')
+			continue;
 		commands = com_arr(line, " \n");
-		path = get_path(commands[0]);
-		if (path != NULL)
-		{
-			pid = fork();
-			if (pid == 0)
-				exe_fun(path, commands, NULL);
-			else if (pid > 0)
-			{
-				int status;
-
-				wait(&status);
-			}
-		}
-		else
-			print_error(commands[0]);
+		b = handle_builtin(builtin_checker(commands[0]));
+		if (b == -1)
+			handle_path(commands);
+		else if (b == 0)
+			break;
+		free_arr(commands);
 	}
 	free(line);
 	free(shell_name);
 	free_arr(commands);
 	free(path);
+	if (b == 0)
+	{
+		printf("here");
+		my_exit(NULL);
+	}
 	return (0);
 }
