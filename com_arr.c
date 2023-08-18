@@ -34,6 +34,7 @@ char **com_arr(char *line, char *delim)
 		perror("Couldn't allocate memory");
 		exit(EXIT_FAILURE);
 	}
+	free(linecopy);
 	linecopy = strdup(line);
 	if (linecopy == NULL)
 	{
