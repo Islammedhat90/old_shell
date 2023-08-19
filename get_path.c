@@ -15,14 +15,6 @@ char *get_path(char *command)
 	paths = com_arr(path_env, ":\n");
 	if (command != NULL)
 	{
-		if (command[0] == '/')
-		{
-			if (access(command, F_OK) == 0)
-			{
-				return (command);
-			}
-			return (NULL);
-		}
 		for (; paths[i] != NULL; i++)
 		{
 			path = malloc(sizeof(char) * (strlen(paths[i]) + strlen(command) + 2));
@@ -44,8 +36,7 @@ char *get_path(char *command)
 		}
 	}
 	free_arr(paths);
-	free(path);
-	printf("get path end\n");
+	printf("path end");
 	return (NULL);
 }
 
@@ -56,28 +47,43 @@ void handle_path(char **commands)
 
 	if (commands != NULL)
 	{
-		path = get_path(commands[0]);
+		if (*commands[0] == '/')
+		{
+			path = strdup(commands[0]);
+			if (path == NULL)
+			{
+				perror("couldn't allocate memory");
+				exit(EXIT_FAILURE);
+			}
+		}
+		else
+			path = get_path(commands[0]);
+		printf("PATH is %s\n", path);
 		if (path != NULL)
 		{
 			pid = fork();
 			if (pid == 0)
-				exe_fun(path, commands, NULL);
+			{
+				if (exe_fun(path, commands, NULL) == -1)
+				{
+					exit(99);
+				}
+			}
 			else if (pid > 0)
 			{
 				int status;
 
 				wait(&status);
 				free(path);
-				return;
 			}
 			else
 			{
+				perror("fork failed");
 				print_error(commands[0]);
-				free(path);
 			}
 		}
-		print_error(commands[0]);
-		return;
+		else
+			print_error(commands[0]);
 	}
 	return;
 }

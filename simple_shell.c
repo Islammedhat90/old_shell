@@ -10,7 +10,7 @@
 
 int main(__attribute__((unused))int ac, char **av)
 {
-	char *line = NULL, **commands = NULL, *path = NULL;
+	char *line = NULL, **commands = NULL;
 	char *prompt = "(OURSHELL) : ";
 	size_t n;
 	ssize_t read;
@@ -31,13 +31,14 @@ int main(__attribute__((unused))int ac, char **av)
 		if (b == -1)
 			handle_path(commands);
 		else if (b == 0)
+		{
+			free_arr(commands);
 			break;
+		}
 		free_arr(commands);
 	}
 	free(line);
 	free(shell_name);
-	free_arr(commands);
-	free(path);
 	if (b == 0)
 	{
 		printf("here");
