@@ -25,4 +25,8 @@ int handle_builtin(int m);
 void my_exit(char *command);
 void my_env();
 
+char* appendStr(char* restrict  destination, char* restrict source);
+char *copyStr(char* restrict  destination, char* restrict source);
+size_t lengthOfStr(const char * string);
+
 #endif
