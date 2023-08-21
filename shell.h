@@ -23,5 +23,6 @@ int exe_fun(char *path, char **commands, char **envp);
 int builtin_checker(char *command);
 int handle_builtin(int m);
 void my_exit(char *command);
+void my_env();
 
 #endif
