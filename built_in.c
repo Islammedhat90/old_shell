@@ -35,6 +35,7 @@ int handle_builtin(int m)
 		case 0:
 			return (0);
 		case 1:
+			my_env();
 			break;
 		default:
 			return(-1);
@@ -51,6 +52,22 @@ void my_exit(char *command)
 {
 	if (command == NULL)
 		exit(0);
+}
+
+/** my_env - function that prints current environment
+  *
+  * Return: nothing.
+  */
+void my_env()
+{
+	char **env = environ;
+	int i = 0;
+
+	for (; env[i] != NULL; i++)
+	{
+		write(1, env[i], strlen(env[i]));
+		write(1, "\n", 1);
+	}
 }
 
 

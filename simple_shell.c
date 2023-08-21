@@ -1,5 +1,6 @@
 #include "shell.h"
 
+char *shell_name = "./hsh";
 
 /**
   * main - simple_shell initializztion.
@@ -8,23 +9,23 @@
   * Return: 0 if shell exits;
   */
 
-int main(__attribute__((unused))int ac, char **av)
+int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 {
-	char *line = NULL, **commands = NULL;
+	char *line = NULL, **commands = NULL; char *handledline = NULL;
 	char *prompt = "(OURSHELL) : ";
 	size_t n;
 	ssize_t read;
 	int b = 0;
 
-	__attribute__((unused))char *shell_name = strdup(av[0]);
-
 	while (1)
 	{
-		printf("%s", prompt);
+		if (isatty(0))
+			printf("%s", prompt);
 		read = getline(&line, &n, stdin);
 		if (read == -1)
 			break;
-		if (line[0] == '\n')
+		handledline = handle_line(line);
+		if (handledline[0] == '\n')
 			continue;
 		commands = com_arr(line, " \n");
 		b = handle_builtin(builtin_checker(commands[0]));
@@ -37,8 +38,7 @@ int main(__attribute__((unused))int ac, char **av)
 		}
 		free_arr(commands);
 	}
-	free(line);
-	free(shell_name);
+	free(handledline);
 	if (b == 0)
 	{
 		printf("here");

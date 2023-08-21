@@ -11,8 +11,8 @@ int print_error(char *command)
 {
 	if (command != NULL)
 	{
-		write(1, "hello", strlen("hello"));
-		write(1, ": ", 2);
+		write(STDERR_FILENO, shell_name, strlen(shell_name));
+		write(STDERR_FILENO, ": ", 2);
 		perror(command);
 	}
 	return (0);

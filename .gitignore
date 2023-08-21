@@ -1,3 +1,14 @@
-TEST_SUITES
+TEST_SUITES/
+
 allowed_functions
 runchecker.bash
+
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+.gitignore
+

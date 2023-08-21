@@ -14,7 +14,7 @@
 
 
 
-char *copyStr(char* restrict  destination, char* restrict source)
+char *copyStr(char* destination, char* source)
 
 {
 

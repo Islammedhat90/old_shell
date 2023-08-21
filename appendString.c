@@ -8,7 +8,7 @@
 *Return: pointer to the destination string
 */
 
-char *appendStr(char *restrict  destination, char *restrict source)
+char *appendStr(char *destination, char *source)
 
 {
 	size_t a, b, c;

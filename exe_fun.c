@@ -12,7 +12,6 @@ int exe_fun(char *path, char **commands, char **envp)
 {
 	if (execve(path, commands, envp) == -1)
 	{
-		printf("check if i come here");
 		print_error(path);
 		return (-1);
 	}

@@ -2,14 +2,14 @@
 
 /**
  * get_path - functions that returns path of a command
- * @dirs: directories to search for a command in.
+ * @command: command to get path for if it exists.
  * Return: absolute path for a command or NULL if not found
 */
 
 char *get_path(char *command)
 {
 	char *path = NULL, *path_env = NULL, **paths = NULL;
-	int i = 0;;
+	int i = 0;
 
 	path_env = _getenv("PATH");
 	paths = com_arr(path_env, ":\n");
@@ -17,16 +17,16 @@ char *get_path(char *command)
 	{
 		for (; paths[i] != NULL; i++)
 		{
-			path = malloc(sizeof(char) * (strlen(paths[i]) + strlen(command) + 2));
+			path = malloc(sizeof(char) * (lengthOfStr(paths[i]) + lengthOfStr(command) + 2));
 			if (path == NULL)
 			{
 				perror("Couldn't allocate memory");
 				free_arr(paths);
 				exit(EXIT_FAILURE);
 			}
-			strcpy(path, paths[i]);
-			strcat(path, "/");
-			strcat(path, command);
+			copyStr(path, paths[i]);
+			appendStr(path, "/");
+			appendStr(path, command);
 			if (access(path, F_OK) == 0)
 			{
 				free_arr(paths);
@@ -36,9 +36,14 @@ char *get_path(char *command)
 		}
 	}
 	free_arr(paths);
-	printf("path end");
 	return (NULL);
 }
+
+/**
+  * handle_path - function that executes the command with path
+  * @commands: double pointer holding all commands and arguments.
+  * Return: nothing.
+  */
 
 void handle_path(char **commands)
 {
@@ -58,16 +63,13 @@ void handle_path(char **commands)
 		}
 		else
 			path = get_path(commands[0]);
-		printf("PATH is %s\n", path);
 		if (path != NULL)
 		{
 			pid = fork();
 			if (pid == 0)
 			{
 				if (exe_fun(path, commands, NULL) == -1)
-				{
-					exit(99);
-				}
+					exit(EXIT_FAILURE);
 			}
 			else if (pid > 0)
 			{
@@ -79,11 +81,11 @@ void handle_path(char **commands)
 			else
 			{
 				perror("fork failed");
+				free(path);
 				print_error(commands[0]);
 			}
 		}
 		else
 			print_error(commands[0]);
 	}
-	return;
 }
