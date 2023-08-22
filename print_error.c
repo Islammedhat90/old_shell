@@ -29,7 +29,7 @@ void print_commanderr(char *command, int count)
 {
 	char *number = print_number(count);
 
-	write(STDERR_FILENO, shell_name, strlen(shell_name));
+	write(STDERR_FILENO, shell_name, lengthOfStr(shell_name));
 	write(STDERR_FILENO, ": ", 2);
 	write(STDERR_FILENO, number, lengthOfStr(number));
 	write(STDERR_FILENO, ": ", 2);
