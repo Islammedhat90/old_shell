@@ -1,12 +1,12 @@
 #include "shell.h"
 
 
-/*
-*appendStr : concatenates one string to another string
-*@destination:string which is copied to
-*@source:String copies from
-*Return: pointer to the destination string
-*/
+/**
+ *appendStr - concatenates one string to another string
+ *@destination:string which is copied to
+ *@source:String copies from
+ *Return: pointer to the destination string
+ */
 
 char *appendStr(char *destination, char *source)
 

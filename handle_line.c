@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
- * handle_new_line - Function handles the line that user enters
+ * handle_line - Function handles the line that user enters
  * @line: Take the line from getline function
  * Return: The handled string without new line(\n)
 */

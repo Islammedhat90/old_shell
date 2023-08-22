@@ -12,7 +12,7 @@ char *get_path(char *command)
 	int i = 0;
 
 	path_env = _getenv("PATH");
-	paths = com_arr(path_env, ":\n");
+	paths = com_arr(path_env, ":");
 	if (command != NULL)
 	{
 		for (; paths[i] != NULL; i++)
@@ -69,7 +69,9 @@ void handle_path(char **commands)
 			if (pid == 0)
 			{
 				if (exe_fun(path, commands, NULL) == -1)
-					exit(EXIT_FAILURE);
+				{
+					exit(2);
+				}
 			}
 			else if (pid > 0)
 			{

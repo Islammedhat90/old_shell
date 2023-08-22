@@ -12,7 +12,7 @@ int free_arr(char **arr)
 
 	if (arr != NULL)
 	{
-		for(; arr[i] != NULL; i++)
+		for (; arr[i] != NULL; i++)
 		{
 			free(arr[i]);
 			arr[i] = NULL;

@@ -18,15 +18,21 @@ char *handle_line(char *line);
 char *get_path(char *command);
 void handle_path(char **commands);
 int print_error(char *command);
+char *print_number(int count);
+void print_commanderr(char *command, int count);
 int exe_fun(char *path, char **commands, char **envp);
+
 
 int builtin_checker(char *command);
 int handle_builtin(int m);
 void my_exit(char *command);
-void my_env();
+void my_env(void);
 
-char *appendStr(char* destination, char* source);
-char *copyStr(char* destination, char* source);
+char *appendStr(char *destination, char source);
+char *copyStr(char *destination, char *source);
 size_t lengthOfStr(const char * string);
+int _strcmp(const char *s1, const char *s2);
+int _strncmp(const char *s1, const char *s2, size_t n);
+char *_strdup(char *str);
 
 #endif

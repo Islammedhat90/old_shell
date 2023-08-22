@@ -11,7 +11,7 @@ char *shell_name = "./hsh";
 
 int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 {
-	char *line = NULL, **commands = NULL; char *handledline = NULL;
+	char *line = NULL, **commands = NULL, *handledline = NULL;
 	char *prompt = "(OURSHELL) : ";
 	size_t n;
 	ssize_t read;
@@ -20,14 +20,16 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 	while (1)
 	{
 		if (isatty(0))
-			printf("%s", prompt);
+		{
+			write(1, prompt, lengthOfStr(prompt));
+			fflush(stdin);
+		}
 		read = getline(&line, &n, stdin);
 		if (read == -1)
 			break;
-		handledline = handle_line(line);
-		if (handledline[0] == '\n')
+		if (line[0] == '\n')
 			continue;
-		commands = com_arr(line, " \n");
+		commands = com_arr(line, " \"\n\t\r");
 		b = handle_builtin(builtin_checker(commands[0]));
 		if (b == -1)
 			handle_path(commands);
@@ -41,7 +43,6 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 	free(handledline);
 	if (b == 0)
 	{
-		printf("here");
 		my_exit(NULL);
 	}
 	return (0);
