@@ -14,6 +14,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 	char *line = NULL, **commands = NULL, *handledline = NULL;
 	char *prompt = "(OURSHELL) : ";
 	size_t n;
+	int i = 0;
 	ssize_t read;
 	int b = 0;
 
@@ -29,7 +30,8 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 			break;
 		if (line[0] == '\n')
 			continue;
-		commands = com_arr(line, " \"\n\t\r");
+		handledline = handle_line(line);
+		commands = com_arr(handledline, " \n\t\r");
 		b = handle_builtin(builtin_checker(commands[0]));
 		if (b == -1)
 			handle_path(commands);
