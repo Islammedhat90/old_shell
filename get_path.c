@@ -17,7 +17,8 @@ char *get_path(char *command)
 	{
 		for (; paths[i] != NULL; i++)
 		{
-			path = malloc(sizeof(char) * (lengthOfStr(paths[i]) + lengthOfStr(command) + 2));
+			path = malloc(sizeof(char) * (lengthOfStr(paths[i]) +
+						lengthOfStr(command) + 2));
 			if (path == NULL)
 			{
 				perror("Couldn't allocate memory");
