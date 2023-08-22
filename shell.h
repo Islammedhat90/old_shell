@@ -34,5 +34,6 @@ size_t lengthOfStr(const char * string);
 int _strcmp(const char *s1, const char *s2);
 int _strncmp(const char *s1, const char *s2, size_t n);
 char *_strdup(char *str);
+int compStr(const char *string1, const char *string2);
 
 #endif
