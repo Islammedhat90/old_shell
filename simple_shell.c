@@ -24,7 +24,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 			write(1, prompt, lengthOfStr(prompt));
 			fflush(stdin);
 		}
-		read = getline(&line, &n, stdin);
+		read = _getline(&line, &n, stdin);
 		if (read == -1)
 			break;
 		if (line[0] == '\n')

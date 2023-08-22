@@ -23,7 +23,7 @@ void print_commanderr(char *command, int count);
 int exe_fun(char *path, char **commands, char **envp);
 int delimcheck(char c, const char *delim);
 char *_strtok(char *line, const char *delim);
-
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 
 int builtin_checker(char *command);
 int handle_builtin(int m);
