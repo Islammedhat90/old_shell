@@ -9,7 +9,7 @@
 char *_getenv(char *var)
 {
 	char **env = environ;
-	int size = strlen(var);
+	int size = lengthOfStr(var);
 
 	while (*env != NULL)
 	{

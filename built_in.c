@@ -65,7 +65,7 @@ void my_env()
 
 	for (; env[i] != NULL; i++)
 	{
-		write(1, env[i], strlen(env[i]));
+		write(1, env[i], lengthOfStr(env[i]));
 		write(1, "\n", 1);
 	}
 }
