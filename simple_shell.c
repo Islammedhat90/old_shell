@@ -14,7 +14,6 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 	char *line = NULL, **commands = NULL, *handledline = NULL;
 	char *prompt = "(OURSHELL) : ";
 	size_t n;
-	int i = 0;
 	ssize_t read;
 	int b = 0;
 
