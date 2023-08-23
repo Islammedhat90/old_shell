@@ -10,11 +10,11 @@
 int builtin_checker(char *command)
 {
 	int i = 0;
-	char *builtin[] = {"exit", "env"};
+	char *builtin[] = {"exit", "env", "cd"};
 
 	if (command != NULL)
 	{
-		for (; i < 2; i++)
+		for (; i < 3; i++)
 		{
 			if (compStr(command, builtin[i]) == 0)
 				return (i);
@@ -28,10 +28,11 @@ int builtin_checker(char *command)
 /**
  * handle_builtin - Handles built-in commands based on input code.
  * @m: The code representing the built-in command.
+ * @commands: array of commands
  * Return: 0 if successful, -1 on error or unknown command.
  */
 
-int handle_builtin(int m)
+int handle_builtin(int m, char **commands)
 {
 	if (m == -1)
 		return (-1);
@@ -41,6 +42,10 @@ int handle_builtin(int m)
 			return (0);
 		case 1:
 			my_env();
+			return (1);
+		case 2:
+			printf("NOW HERE %s\n", commands[0]);
+			my_cd(commands);
 			return (1);
 		default:
 			return (-1);
@@ -78,13 +83,43 @@ void my_env(void)
 	}
 }
 
+/**
+ * my_cd - Change the current working directory.
+ * @commands: An array of strings containing the command and arguments.
+ * Return: nothing.
+ */
 
+void my_cd(char **commands)
+{
+	int check = -1;
+	int count = command_count(commands);
+	char *dir = NULL;
 
+	__attribute__((unused))char *cur = _getenv("PWD");
 
-
-
-
-
+	if (count > 2)
+		print_error(commands[0]);
+	else
+	{
+		if (commands[1] == NULL)
+		{
+			dir = _getenv("HOME");
+		}
+		else if (commands[1][0] == '-')
+			dir = _getenv("OLDPWD");
+		else
+		{
+			dir = strdup(commands[1]);
+			check = 1;
+		}
+		if (chdir(dir) == 0)
+		{
+			/*print_error("couldn't change directory"); */
+		}
+	}
+	if (check == 1)
+		free(dir);
+}
 
 
 

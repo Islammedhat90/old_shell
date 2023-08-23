@@ -25,11 +25,13 @@ int exe_fun(char *path, char **commands, char **envp);
 int delimcheck(char c, const char *delim);
 char *_strtok(char *line, const char *delim);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
+int command_count(char **commands);
 
 int builtin_checker(char *command);
-int handle_builtin(int m);
+int handle_builtin(int m, char **commands);
 void my_exit(char *command);
 void my_env(void);
+void my_cd(char **commands);
 
 char *appendStr(char *destination, char *source);
 char *copyStr(char *destination, char *source);

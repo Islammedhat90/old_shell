@@ -30,7 +30,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 			continue;
 		handledline = handle_line(line);
 		commands = com_arr(handledline, " \n\t\r");
-		b = handle_builtin(builtin_checker(commands[0]));
+		b = handle_builtin(builtin_checker(commands[0]), commands);
 		if (b == -1)
 			handle_path(commands);
 		else if (b == 0)

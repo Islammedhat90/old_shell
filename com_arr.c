@@ -76,3 +76,21 @@ void fill_array(char **commands, char *copy, char *delim)
 		token = strtok(NULL, delim);
 	}
 }
+
+/**
+  * command_count - function that counts commands
+  * @commands: array of commands
+  * Return: number of commands;
+  */
+
+int command_count(char **commands)
+{
+	int i = 0;
+	if (commands != NULL)
+	{
+		while(commands[i] != NULL)
+			i++;
+		return (i);
+	}
+	return (-1);
+}
