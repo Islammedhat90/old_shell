@@ -25,7 +25,12 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 		}
 		read = _getline(&line, &n, stdin);
 		if (read == -1)
-			break;
+		{
+			if (isatty(0) == 1)
+				write(1, "\n", 1);
+			free(line);
+			exit(EXIT_SUCCESS);
+		}
 		if (line[0] == '\n' || (line_checker(line) == -1))
 			continue;
 		handledline = handle_line(line);
@@ -42,8 +47,5 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 	}
 	free(handledline);
 	if (b == 0)
-	{
 		my_exit(NULL);
-	}
-	return (0);
-}
+	return (0); }
