@@ -32,6 +32,8 @@ int builtin_checker(char *command);
 int handle_builtin(int m, char **commands);
 void my_exit(char *command);
 void my_env(void);
+int _setenv(char *var, char *value);
+int my_setenv(char **commands);
 void my_cd(char **commands);
 
 char *appendStr(char *destination, char *source);
