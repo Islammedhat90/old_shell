@@ -16,7 +16,7 @@ int builtin_checker(char *command)
 	{
 		for (; i < 2; i++)
 		{
-			if (strcmp(command, builtin[i]) == 0)
+			if (compStr(command, builtin[i]) == 0)
 				return (i);
 		}
 		return (-1);
