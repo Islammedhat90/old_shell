@@ -27,3 +27,19 @@ char *handle_line(char *line)
 		line[len - 1] = '\0';
 	return (line);
 }
+
+int line_checker(char *line)
+{
+	int i = 0;
+	
+	if (line != NULL)
+	{
+		for (; line[i] != '\0'; i++)
+		{
+			if (line[i] != ' ' && line[i] != '\n')
+				return (1);
+		}
+	}
+	return (-1);
+}
+

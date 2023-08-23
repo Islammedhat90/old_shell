@@ -16,6 +16,7 @@ char **com_arr(char *line, char *delim);
 void fill_array(char **commands, char *copy, char *delim);
 char *_getenv(char *var);
 char *handle_line(char *line);
+int line_checker(char *line);
 char *get_path(char *command);
 void handle_path(char **commands);
 int print_error(char *command);

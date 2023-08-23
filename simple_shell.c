@@ -26,7 +26,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 		read = _getline(&line, &n, stdin);
 		if (read == -1)
 			break;
-		if (line[0] == '\n')
+		if (line[0] == '\n' || (line_checker(line) == -1))
 			continue;
 		handledline = handle_line(line);
 		commands = com_arr(handledline, " \n\t\r");
