@@ -1,6 +1,5 @@
 #include "shell.h"
 
-char *shell_name = "./hsh";
 
 /**
   * main - simple_shell initializztion.
@@ -11,6 +10,7 @@ char *shell_name = "./hsh";
 
 int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 {
+	char *shell_name = "./hsh";
 	char *line = NULL, **commands = NULL, *handledline = NULL;
 	char *prompt = "(OURSHELL) : ";
 	size_t n;
