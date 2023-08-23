@@ -66,25 +66,25 @@ void handle_path(char **commands)
 			path = get_path(commands[0]);
 		if (path != NULL)
 		{
-			pid = fork();
-			if (pid == 0)
+			if (access(path, X_OK) == 0)
 			{
-				if (exe_fun(path, commands, NULL) == -1)
+				pid = fork();
+				if (pid == 0)
 				{
-					exit(2);
+					if (exe_fun(path, commands, NULL) == -1)
+						exit(2);
 				}
-			}
-			else if (pid > 0)
-			{
-				int status;
+				else if (pid > 0)
+				{
+					int status;
 
-				wait(&status);
-				free(path); }
-			else
-			{
-				perror("fork failed");
-				free(path);
-				print_error(commands[0]); } }
+					wait(&status);
+					free(path); }
+				else
+				{
+					perror("fork failed");
+					free(path);
+					print_error(commands[0]); } }}
 		else
 			print_error(commands[0]);
 	} }
