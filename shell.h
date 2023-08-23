@@ -13,6 +13,7 @@ extern char **environ;
 
 int free_arr(char **arr);
 char **com_arr(char *line, char *delim);
+void fill_array(char **commands, char *copy, char *delim);
 char *_getenv(char *var);
 char *handle_line(char *line);
 char *get_path(char *command);
@@ -32,7 +33,7 @@ void my_env(void);
 
 char *appendStr(char *destination, char *source);
 char *copyStr(char *destination, char *source);
-size_t lengthOfStr(const char * string);
+size_t lengthOfStr(const char *string);
 int _strcmp(const char *s1, const char *s2);
 int _strncmp(const char *s1, const char *s2, size_t n);
 char *_strdup(char *str);

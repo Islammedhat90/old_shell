@@ -11,7 +11,7 @@
 char **com_arr(char *line, char *delim)
 {
 	char *token = NULL, **commands = NULL, *linecopy = NULL, *copy = NULL;
-	int command_count = 0, i = 0, len;
+	int command_count = 0, len;
 
 	len = lengthOfStr(line);
 	linecopy = malloc(len + 1);
@@ -42,8 +42,29 @@ char **com_arr(char *line, char *delim)
 		perror("Couldn't allocate memory");
 		exit(EXIT_FAILURE);
 	}
+	fill_array(commands, copy, delim);
+	commands[command_count] = NULL;
+	free(copy);
+	free(linecopy);
+	return (commands);
+}
+
+
+/**
+  * fill_array - function that fills command array
+  * @commands: commands array to be filled
+  * @copy: copy of arguments to fill array with
+  * @delim: delimiters to use
+  * Return: nothing;
+  */
+
+void fill_array(char **commands, char *copy, char *delim)
+{
+	char *token = NULL;
+	int i = 0;
+
 	token = strtok(copy, delim);
-	for (i = 0; token != NULL; i++)
+	for (; token != NULL; i++)
 	{
 		commands[i] = strdup(token);
 		if (commands[i] == NULL)
@@ -54,8 +75,4 @@ char **com_arr(char *line, char *delim)
 		}
 		token = strtok(NULL, delim);
 	}
-	commands[command_count] = NULL;
-	free(copy);
-	free(linecopy);
-	return (commands);
 }
