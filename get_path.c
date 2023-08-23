@@ -55,7 +55,7 @@ void handle_path(char **commands)
 	{
 		if (*commands[0] == '/')
 		{
-			path = strdup(commands[0]);
+			path = duplStr(commands[0]);
 			if (path == NULL)
 			{
 				perror("couldn't allocate memory");
