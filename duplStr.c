@@ -10,6 +10,7 @@ char *duplStr(char *source)
 {
 	char  *duplicate;
 	int length;
+	int i;
 
 	length = lengthOfStr(source);
 
@@ -18,9 +19,7 @@ char *duplStr(char *source)
 	if (duplicate == NULL)
 		return ((char *)NULL);
 
-	int i = 0;
-
-	for (; source[i] != '\0'; i++)
+	for (i = 0; source[i] != '\0'; i++)
 		duplicate[i] = source[i];
 	duplicate[i] = '\0';
 
