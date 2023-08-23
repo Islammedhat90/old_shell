@@ -44,7 +44,6 @@ int handle_builtin(int m, char **commands)
 			my_env();
 			return (1);
 		case 2:
-			printf("NOW HERE %s\n", commands[0]);
 			my_cd(commands);
 			return (1);
 		default:
