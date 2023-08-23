@@ -79,16 +79,12 @@ void handle_path(char **commands)
 				int status;
 
 				wait(&status);
-				free(path);
-			}
+				free(path); }
 			else
 			{
 				perror("fork failed");
 				free(path);
-				print_error(commands[0]);
-			}
-		}
+				print_error(commands[0]); } }
 		else
 			print_error(commands[0]);
-	}
-}
+	} }
