@@ -34,7 +34,7 @@ void my_exit(char *command);
 void my_env(void);
 int _setenv(char *var, char *value);
 int my_setenv(char **commands);
-void my_cd(char **commands);
+int my_cd(char **commands);
 
 char *appendStr(char *destination, char *source);
 char *copyStr(char *destination, char *source);

@@ -88,10 +88,10 @@ void my_env(void)
 /**
  * my_cd - Change the current working directory.
  * @commands: An array of strings containing the command and arguments.
- * Return: nothing.
+ * Return: 0 if success, -1 otherwise.
  */
 
-void my_cd(char **commands)
+int my_cd(char **commands)
 {
 	int check = -1;
 	int count = command_count(commands);
@@ -114,13 +114,20 @@ void my_cd(char **commands)
 			dir = strdup(commands[1]);
 			check = 1;
 		}
-		if (chdir(dir) == 0)
-			_setenv("PWD", dir);
-		else
-			perror("can't change directory");
+	}
+	if (chdir(dir) == 0)
+	{
+		_setenv("PWD", dir);
+		if (check == 1)
+		{
+			free(dir);
+			check = -1;
+		}
+		return (0);
 	}
 	if (check == 1)
 		free(dir);
+	return (-1);
 }
 
 
