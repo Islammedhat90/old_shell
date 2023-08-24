@@ -61,11 +61,8 @@ int handle_builtin(int m, char **commands)
   * Return: nothing.
   */
 
-void my_exit(char *command)
+void my_exit(__attribute__((unused))char *command)
 {
-	if (command == NULL)
-		exit(2);
-	else
 		exit(EXIT_SUCCESS);
 }
 
