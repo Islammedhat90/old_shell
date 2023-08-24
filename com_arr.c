@@ -66,7 +66,7 @@ void fill_array(char **commands, char *copy, char *delim)
 	token = strtok(copy, delim);
 	for (; token != NULL; i++)
 	{
-		commands[i] = strdup(token);
+		commands[i] = _strdup(token);
 		if (commands[i] == NULL)
 		{
 			free_arr(commands);

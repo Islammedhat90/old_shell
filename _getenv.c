@@ -35,19 +35,19 @@ int _setenv(char *var, char *value)
 
 	if (var == NULL || value == NULL)
 		return (-1);
-	len = strlen(var);
-	new = malloc(len + strlen(value) + 2);
+	len = lengthOfStr(var);
+	new = malloc(len + lengthOfStr(value) + 2);
 	if (new == NULL)
 	{
 		perror("couldn't allocate memory");
 		return (-1);
 	}
-	strcat(new, var);
-	strcat(new, "=");
-	strcat(new, value);
+	appendStr(new, var);
+	appendStr(new, "=");
+	appendStr(new, value);
 	while (environ[i] != NULL)
 	{
-		if (strncmp(var, environ[i], len) == 0)
+		if (_strncmp(var, environ[i], len) == 0)
 		{
 
 			environ[i] = new;

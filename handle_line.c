@@ -6,8 +6,8 @@
 */
 char *handle_line(char *line)
 {
-	int len, i = 0;
-
+	size_t len;
+	int i = 0;
 	while (line[i])
 	{
 		if (line[i] != ' ')
@@ -17,12 +17,12 @@ char *handle_line(char *line)
 		}
 		i++;
 	}
-	len = (int)lengthOfStr(line);
+	len = lengthOfStr(line);
 	if (len == 1 && line[0] == '\n')
 	{
 		return (line);
 	}
-	len = (int)lengthOfStr(line);
+	len = lengthOfStr(line);
 	if (line[len - 1] == '\n')
 		line[len - 1] = '\0';
 	return (line);

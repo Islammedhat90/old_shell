@@ -109,7 +109,7 @@ int my_cd(char **commands)
 	}
 	else
 	{
-		dir = strdup(commands[1]);
+		dir = _strdup(commands[1]);
 		check = 1;
 	}
 	if (chdir(dir) == 0)
