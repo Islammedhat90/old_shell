@@ -79,7 +79,6 @@ char *print_number(int n)
 
 void handle_ctrlc(__attribute__((unused))int signum)
 {
-	write(1, "^C", 1);
 	write(1, "\n", 1);
 	write(1, "(OURHSHELL) : ", lengthOfStr("(OURHSHELL) : "));
 }
