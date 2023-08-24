@@ -99,21 +99,18 @@ int my_cd(char **commands)
 
 	__attribute__((unused))char *cur = _getenv("PWD");
 
-	if (count > 2)
-		print_error(commands[0]);
+	if (count == 1)
+	{
+		dir = _getenv("HOME");
+	}
+	else if (commands[1][0] == '-')
+	{
+		dir = _getenv("OLDPWD");
+	}
 	else
 	{
-		if (commands[1] == NULL)
-		{
-			dir = _getenv("HOME");
-		}
-		else if (commands[1][0] == '-')
-			dir = _getenv("OLDPWD");
-		else
-		{
-			dir = strdup(commands[1]);
-			check = 1;
-		}
+		dir = strdup(commands[1]);
+		check = 1;
 	}
 	if (chdir(dir) == 0)
 	{
@@ -124,6 +121,7 @@ int my_cd(char **commands)
 		}
 		return (0);
 	}
+	print_error(commands[1]);
 	if (check == 1)
 		free(dir);
 	return (-1);
