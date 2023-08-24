@@ -29,12 +29,12 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 			if (isatty(0) == 1)
 				write(1, "\n", 1);
 			free(line);
-			exit(EXIT_SUCCESS);
-		}
+			exit(EXIT_SUCCESS); }
 		if (line[0] == '\n' || (line_checker(line) == -1))
 			continue;
 		handledline = handle_line(line);
-		if (operatorcheck(handledline) != 0) {
+		if (operatorcheck(handledline) != 0)
+		{
 			commands = com_arr(handledline, " \n\t\r");
 			b = handle_builtin(builtin_checker(commands[0]), commands);
 			if (b == -1)

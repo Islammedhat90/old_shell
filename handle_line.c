@@ -62,7 +62,7 @@ int operatorcheck(char *line)
 {
 	int i = 0, check = -1;
 
-	while(line[i] != '\0')
+	while (line[i] != '\0')
 	{
 		if (line[i] == ';' && line[i + 1] != ';')
 		{
