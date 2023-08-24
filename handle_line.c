@@ -51,3 +51,55 @@ int line_checker(char *line)
 	return (-1);
 }
 
+/**
+ * operatorcheck - Checks if multiple commands are separated by operators.
+ * @line: The input line to check for operators.
+ *
+ * Return: 0 if operators found and handled, -1 otherwise.
+ */
+
+int operatorcheck(char *line)
+{
+	int i = 0, check = -1;
+
+	while(line[i] != '\0')
+	{
+		if (line[i] == ';' && line[i + 1] != ';')
+		{
+			check = 1;
+		}
+		i++;
+	}
+	if (check == 1)
+	{
+		handle_operator(line);
+		return (0);
+	}
+	return (-1);
+}
+
+/**
+ * handle_operator - Handles multiple commands separated by operators.
+ * @line: The input line containing multiple commands.
+ *
+ * Return: Always returns 0.
+ */
+
+int handle_operator(char *line)
+{
+	int i = 0;
+	int count = 0;
+	char **split = NULL;
+	char **commands = NULL;
+
+	split = com_arr(line, ";");
+	count = command_count(split);
+	for (; i < count; i++)
+	{
+		commands = com_arr(split[i], " \n\t\r");
+		handle_path(commands);
+		free_arr(commands);
+	}
+	free_arr(split);
+	return (0);
+}

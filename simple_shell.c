@@ -34,16 +34,16 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 		if (line[0] == '\n' || (line_checker(line) == -1))
 			continue;
 		handledline = handle_line(line);
-		commands = com_arr(handledline, " \n\t\r");
-		b = handle_builtin(builtin_checker(commands[0]), commands);
-		if (b == -1)
-			handle_path(commands);
-		else if (b == 0)
-		{
-			free_arr(commands);
-			break;
-		}
-		free_arr(commands);
+		if (operatorcheck(handledline) != 0) {
+			commands = com_arr(handledline, " \n\t\r");
+			b = handle_builtin(builtin_checker(commands[0]), commands);
+			if (b == -1)
+				handle_path(commands);
+			else if (b == 0)
+			{
+				free_arr(commands);
+				break; }
+			free_arr(commands); }
 	}
 	free(handledline);
 	if (b == 0)
