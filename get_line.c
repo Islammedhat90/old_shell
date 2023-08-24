@@ -1,3 +1,11 @@
+#include "shell.h"
+
+/**
+ *lineGet - alternative function to getline
+ *@ptrLine:
+ *@lineIn
+ *Return:
+ */
 int lineGet(char **ptrLine, FILE *lineIn)
 {
 	int a =0; /*i*/
