@@ -65,6 +65,8 @@ void my_exit(char *command)
 {
 	if (command == NULL)
 		exit(2);
+	else
+		exit(EXIT_SUCCESS);
 }
 
 /**
