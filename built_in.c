@@ -117,7 +117,6 @@ int my_cd(char **commands)
 	}
 	if (chdir(dir) == 0)
 	{
-		_setenv("PWD", dir);
 		if (check == 1)
 		{
 			free(dir);
