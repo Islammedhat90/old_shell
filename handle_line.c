@@ -2,12 +2,13 @@
 /**
  * handle_line - Function handles the line that user enters
  * @line: Take the line from getline function
- * Return: The handled string without new line(\n)
+ * Return: The handled string without new line
 */
 char *handle_line(char *line)
 {
 	size_t len;
 	int i = 0;
+
 	while (line[i])
 	{
 		if (line[i] != ' ')

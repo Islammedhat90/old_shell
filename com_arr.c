@@ -86,9 +86,10 @@ void fill_array(char **commands, char *copy, char *delim)
 int command_count(char **commands)
 {
 	int i = 0;
+
 	if (commands != NULL)
 	{
-		while(commands[i] != NULL)
+		while (commands[i] != NULL)
 			i++;
 		return (i);
 	}

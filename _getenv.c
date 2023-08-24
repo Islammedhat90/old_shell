@@ -62,6 +62,16 @@ int _setenv(char *var, char *value)
 	}
 	return (0);
 }
+
+/**
+ * my_setenv - Sets an environment variable to a new value.
+ * @commands: An array containing the command and arguments.
+ *
+ * This function sets an environment variable to a new value.
+ *
+ * Return: 0 on success, -1 on failure.
+ */
+
 int my_setenv(char **commands)
 {
 	int count, i = -1;
