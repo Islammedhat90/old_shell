@@ -29,7 +29,6 @@ char *_getenv(char *var)
 
 int _setenv(char *var, char *value)
 {
-	extern char **environ;
 	char *new = NULL;
 	int i = 0, flag = -1;
 	size_t len = 0;
@@ -57,7 +56,10 @@ int _setenv(char *var, char *value)
 		i++;
 	}
 	if (flag != 1)
+	{
 		environ[i] = new;
+		environ[i + 1] = NULL;
+	}
 	return (0);
 }
 int my_setenv(char **commands)

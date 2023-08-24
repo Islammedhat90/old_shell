@@ -28,10 +28,17 @@ char *handle_line(char *line)
 	return (line);
 }
 
+/**
+ * line_checker - Checks if a line contains non-whitespace characters.
+ * @line: The input line to check.
+ *
+ * Return: 1 if the line contains non-whitespace characters, -1 if it's empty.
+ */
+
 int line_checker(char *line)
 {
 	int i = 0;
-	
+
 	if (line != NULL)
 	{
 		for (; line[i] != '\0'; i++)

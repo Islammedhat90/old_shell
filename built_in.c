@@ -115,9 +115,9 @@ void my_cd(char **commands)
 			check = 1;
 		}
 		if (chdir(dir) == 0)
-		{
-			/*print_error("couldn't change directory"); */
-		}
+			_setenv("PWD", dir);
+		else
+			perror("can't change directory");
 	}
 	if (check == 1)
 		free(dir);
