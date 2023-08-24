@@ -71,3 +71,15 @@ char *print_number(int n)
 	return (result);
 }
 
+/**
+ * handle_ctrlc - Handles the SIGINT (Ctrl-C) signal
+ * by printing a message and exiting.
+ * @signum: The signal number (ignored, required for signal handler signature).
+ */
+
+void handle_ctrlc(__attribute__((unused))int signum)
+{
+	write(1, "^C", 1);
+	write(1, "\n", 1);
+	write(1, "(OURHSHELL) : ", lengthOfStr("(OURHSHELL) : "));
+}

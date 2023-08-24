@@ -21,8 +21,8 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 		if (isatty(0))
 		{
 			write(1, prompt, lengthOfStr(prompt));
-			fflush(stdin);
-		}
+			fflush(stdin); }
+		signal(SIGINT, handle_ctrlc);
 		read = getline(&line, &n, stdin);
 		if (read == -1)
 		{

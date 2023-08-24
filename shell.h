@@ -35,6 +35,7 @@ void my_env(void);
 int _setenv(char *var, char *value);
 int my_setenv(char **commands);
 int my_cd(char **commands);
+void handle_ctrlc(int signum);
 
 char *appendStr(char *destination, char *source);
 char *copyStr(char *destination, char *source);
