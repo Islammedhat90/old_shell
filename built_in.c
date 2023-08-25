@@ -61,7 +61,7 @@ int handle_builtin(int m, char **commands)
   * Return: nothing.
   */
 
-void my_exit(__attribute__((unused))char *command)
+void my_exit()
 {
 		exit(errno);
 }
