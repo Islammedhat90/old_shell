@@ -10,6 +10,7 @@
 
 extern char *shell_name;
 extern char **environ;
+extern int count;
 
 int free_arr(char **arr);
 char **com_arr(char *line, char *delim);
@@ -18,10 +19,10 @@ char *_getenv(char *var);
 char *handle_line(char *line);
 int line_checker(char *line);
 char *get_path(char *command);
-void handle_path(char **commands);
+void handle_path(char **commands, int count);
 int print_error(char *command);
 char *print_number(int count);
-void print_commanderr(char *command, int count);
+void print_commanderr(char *command);
 int exe_fun(char *path, char **commands, char **envp);
 int delimcheck(char c, const char *delim);
 char *_strtok(char *line, const char *delim);

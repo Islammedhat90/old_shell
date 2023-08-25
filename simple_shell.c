@@ -14,10 +14,11 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 	char *prompt = "(OURSHELL) : ";
 	size_t n;
 	ssize_t read;
-	int b = 0;
+	int b = 0, count = 0;
 
 	while (1)
 	{
+		count++;
 		if (isatty(0))
 		{
 			write(1, prompt, lengthOfStr(prompt));
@@ -38,7 +39,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 			commands = com_arr(handledline, " \n\t\r");
 			b = handle_builtin(builtin_checker(commands[0]), commands);
 			if (b == -1)
-				handle_path(commands);
+				handle_path(commands, count);
 			else if (b == 0)
 			{
 				free_arr(commands);

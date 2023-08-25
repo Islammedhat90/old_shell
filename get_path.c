@@ -86,5 +86,5 @@ void handle_path(char **commands)
 					free(path);
 					print_error(commands[0]); } }}
 		else
-			print_error(commands[0]);
+			print_commanderr(commands[0], count);
 	} }
