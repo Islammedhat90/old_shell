@@ -53,7 +53,7 @@ void handle_path(char **commands)
 
 	if (commands != NULL)
 	{
-		if (*commands[0] == '/')
+		if (*commands[0] == '/' || *commands[0] == '.')
 		{
 			path = duplStr(commands[0]);
 			if (path == NULL)
