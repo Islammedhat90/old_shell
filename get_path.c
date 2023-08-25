@@ -86,9 +86,15 @@ void handle_path(char **commands, int count)
 					print_error(commands[0]); } 
 			}
 			else
+			{
 				print_commanderr(commands[0], count);
+				errno = 127;
+			}
 		}
 		else
+		{
 			print_commanderr(commands[0], count);
+			errno = 127;
+		}
 	}
 }
