@@ -70,15 +70,14 @@ void handle_path(char **commands, int count)
 			{
 				pid = fork();
 				if (pid == 0)
-				{
-					if (exe_fun(path, commands, NULL) == -1)
-						exit(2);
-				}
+					execve(path, commands, NULL);
 				else if (pid > 0)
 				{
 					int status;
 
 					wait(&status);
+					if (WIFEXITED(status))
+						errno = WEXITSTATUS(status);
 					free(path); }
 				else
 				{
@@ -91,4 +90,5 @@ void handle_path(char **commands, int count)
 		}
 		else
 			print_commanderr(commands[0], count);
-	} }
+	}
+}

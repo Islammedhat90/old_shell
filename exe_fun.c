@@ -12,7 +12,8 @@ int exe_fun(char *path, char **commands, char **envp)
 {
 	if (execve(path, commands, envp) == -1)
 	{
-		print_error(path);
+		printf("first execution\n");
+		errno = 2;
 		return (-1);
 	}
 	return (0);

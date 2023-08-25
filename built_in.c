@@ -63,7 +63,7 @@ int handle_builtin(int m, char **commands)
 
 void my_exit(__attribute__((unused))char *command)
 {
-		exit(EXIT_SUCCESS);
+		exit(errno);
 }
 
 /**
