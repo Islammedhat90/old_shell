@@ -24,6 +24,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 			write(1, prompt, lengthOfStr(prompt));
 			fflush(stdin); }
 		signal(SIGINT, handle_ctrlc);
+		printf("errno in begin  is %d\n", errno);
 		read = getline(&line, &n, stdin);
 		if (read == -1)
 		{
@@ -34,19 +35,28 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 		if (line[0] == '\n' || (line_checker(line) == -1))
 			continue;
 		handledline = handle_line(line);
+		printf("errno before operator check in is %d\n", errno);
 		if (operatorcheck(handledline, count) != 0)
 		{
 			commands = com_arr(handledline, " \n\t\r");
+			printf("errno before built in is %d\n", errno);
 			b = handle_builtin(builtin_checker(commands[0]), commands);
 			if (b == -1)
+			{
 				handle_path(commands, count);
+				printf("errno after path handling is %d\n", errno);
+			}
 			else if (b == 0)
 			{
+				printf("errno before freeing %d\n", errno);
 				free_arr(commands);
 				break; }
 			free_arr(commands); }
 	}
 	free(handledline);
 	if (b == 0)
+	{
+		printf("errno roght before exit %d\n", errno);
 		my_exit();
+	}
 	return (0); }
