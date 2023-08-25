@@ -61,7 +61,7 @@ int handle_builtin(int m, char **commands)
   * Return: nothing.
   */
 
-void my_exit()
+void my_exit(void)
 {
 	exit(errno);
 }
