@@ -11,9 +11,13 @@ int print_error(char *command)
 {
 	if (command != NULL)
 	{
-		write(STDERR_FILENO, "temp", lengthOfStr("temp"));
+		write(STDERR_FILENO, "./hsh", lengthOfStr("./hsh"));
 		write(STDERR_FILENO, ": ", 2);
-		perror(command);
+		write(STDERR_FILENO, ": ", 2);
+		write(STDERR_FILENO, command, lengthOfStr(command));
+		write(STDERR_FILENO, ": ", 2);
+		write(STDERR_FILENO, "not found", lengthOfStr("not found"));
+		write(STDERR_FILENO, "\n", 1);
 	}
 	return (0);
 }

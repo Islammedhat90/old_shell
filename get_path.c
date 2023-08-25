@@ -46,7 +46,7 @@ char *get_path(char *command)
   * Return: nothing.
   */
 
-void handle_path(char **commands)
+void handle_path(char **commands, int count)
 {
 	char *path = NULL;
 	pid_t pid;
@@ -84,7 +84,11 @@ void handle_path(char **commands)
 				{
 					perror("fork failed");
 					free(path);
-					print_error(commands[0]); } }}
+					print_error(commands[0]); } 
+			}
+			else
+				print_commanderr(commands[0], count);
+		}
 		else
 			print_commanderr(commands[0], count);
 	} }

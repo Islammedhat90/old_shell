@@ -58,7 +58,7 @@ int line_checker(char *line)
  * Return: 0 if operators found and handled, -1 otherwise.
  */
 
-int operatorcheck(char *line)
+int operatorcheck(char *line, int count)
 {
 	int i = 0, check = -1;
 
@@ -72,7 +72,7 @@ int operatorcheck(char *line)
 	}
 	if (check == 1)
 	{
-		handle_operator(line);
+		handle_operator(line, count);
 		return (0);
 	}
 	return (-1);
@@ -85,19 +85,19 @@ int operatorcheck(char *line)
  * Return: Always returns 0.
  */
 
-int handle_operator(char *line)
+int handle_operator(char *line, int count)
 {
 	int i = 0;
-	int count = 0;
+	int num = 0;
 	char **split = NULL;
 	char **commands = NULL;
 
 	split = com_arr(line, ";");
-	count = command_count(split);
-	for (; i < count; i++)
+	num = command_count(split);
+	for (; i < num; i++)
 	{
 		commands = com_arr(split[i], " \n\t\r");
-		handle_path(commands);
+		handle_path(commands, count);
 		free_arr(commands);
 	}
 	free_arr(split);
