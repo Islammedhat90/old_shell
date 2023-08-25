@@ -63,7 +63,7 @@ int handle_builtin(int m, char **commands)
 
 void my_exit()
 {
-		exit(errno);
+		exit(EXIT_SUCCESS);
 }
 
 /**
