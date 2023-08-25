@@ -48,5 +48,5 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 	}
 	free(handledline);
 	if (b == 0)
-		my_exit(NULL);
+		my_exit();
 	return (0); }
