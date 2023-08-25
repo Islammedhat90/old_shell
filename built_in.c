@@ -63,8 +63,7 @@ int handle_builtin(int m, char **commands)
 
 void my_exit()
 {
-	printf("errno in exit issssss %d\n", errno);
-	exit(0);
+	exit(errno);
 }
 
 /**
