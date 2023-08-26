@@ -30,7 +30,7 @@ int command_count(char **commands);
 
 int builtin_checker(char *command);
 int handle_builtin(int m, char **commands);
-void my_exit();
+void my_exit(void);
 void my_env(void);
 int _setenv(char *var, char *value);
 int my_setenv(char **commands);
