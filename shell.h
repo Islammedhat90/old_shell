@@ -19,7 +19,7 @@ char *handle_line(char *line);
 int line_checker(char *line);
 char *get_path(char *command);
 void handle_path(char **commands, int count);
-int print_error(char *command);
+int print_error(char *command, int count);
 char *print_number(int count);
 void print_commanderr(char *command, int count);
 int exe_fun(char *path, char **commands, char **envp);
@@ -29,8 +29,8 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 int command_count(char **commands);
 
 int builtin_checker(char *command);
-int handle_builtin(int m, char **commands);
-void my_exit(void);
+int handle_builtin(int m, char **commands, int count);
+void my_exit(char **commands, int count);
 void my_env(void);
 int _setenv(char *var, char *value);
 int my_setenv(char **commands);
@@ -38,6 +38,8 @@ int my_cd(char **commands);
 void handle_ctrlc(int signum);
 int operatorcheck(char *line, int count);
 int handle_operator(char *line, int count);
+int _isdigit(char *number);
+int my_atoi(char *str);
 
 char *appendStr(char *destination, char *source);
 char *copyStr(char *destination, char *source);

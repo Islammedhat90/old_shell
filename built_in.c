@@ -32,13 +32,14 @@ int builtin_checker(char *command)
  * Return: 0 if successful, -1 on error or unknown command.
  */
 
-int handle_builtin(int m, char **commands)
+int handle_builtin(int m, char **commands, int count)
 {
 	if (m == -1)
 		return (-1);
 	switch (m)
 	{
 		case 0:
+			my_exit(commands, count);
 			return (0);
 		case 1:
 			my_env();
@@ -61,8 +62,23 @@ int handle_builtin(int m, char **commands)
   * Return: nothing.
   */
 
-void my_exit(void)
+void my_exit(char **commands, int count)
 {
+	int status;
+
+	if (commands[1] != NULL)
+	{
+		if (_isdigit(commands[1]) == 0)
+		{
+			status = my_atoi(commands[1]);
+			free_arr(commands);
+			exit(status);
+		}
+		else
+		{
+			print_error(commands[1], count);
+		}
+	}
 	exit(EXIT_SUCCESS);
 }
 
@@ -120,7 +136,6 @@ int my_cd(char **commands)
 		}
 		return (0);
 	}
-	print_error(commands[1]);
 	if (check == 1)
 		free(dir);
 	return (-1);

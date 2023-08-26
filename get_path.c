@@ -84,7 +84,7 @@ void handle_path(char **commands, int count)
 				{
 					perror("fork failed");
 					free(path);
-					print_error(commands[0]); }
+					print_error(commands[0], count); }
 			}
 			else
 			{

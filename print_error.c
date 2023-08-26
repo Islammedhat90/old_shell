@@ -7,16 +7,19 @@
  * Return: 0 if succesful.
 */
 
-int print_error(char *command)
+int print_error(char *command, int count)
 {
+	char *number = print_number(count);
 	if (command != NULL)
 	{
 		write(STDERR_FILENO, "./hsh", lengthOfStr("./hsh"));
 		write(STDERR_FILENO, ": ", 2);
+		write(STDERR_FILENO, number, lengthOfStr(number));
 		write(STDERR_FILENO, ": ", 2);
+		write(STDERR_FILENO, "exit", lengthOfStr("exit"));
+		write(STDERR_FILENO, ": ", 2);
+		write(STDERR_FILENO, "Illegal number: ", lengthOfStr("Illegal number: "));
 		write(STDERR_FILENO, command, lengthOfStr(command));
-		write(STDERR_FILENO, ": ", 2);
-		write(STDERR_FILENO, "not found", lengthOfStr("not found"));
 		write(STDERR_FILENO, "\n", 1);
 	}
 	return (0);
