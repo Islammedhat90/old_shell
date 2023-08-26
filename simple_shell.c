@@ -15,15 +15,17 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 	size_t n;
 	ssize_t read;
 	int b = 0, count = 0;
+	int mode = isatty(0);
 
 	while (1)
 	{
+		if (count == 0)
+			errno = 0;	
 		count++;
-		if (isatty(0))
+		if (mode == 1)
 		{
 			write(1, prompt, strlen(prompt));
 		}
-		errno = 0;
 		signal(SIGINT, handle_ctrlc);
 		read = getline(&line, &n, stdin);
 		if (read == -1)
@@ -40,7 +42,9 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 			commands = com_arr(handledline, " \n\t\r");
 			b = builtin_checker(commands[0]);
 			if (b == -1)
+			{
 				handle_path(commands, count);
+			}
 			else
 			{
 				free(handledline);
