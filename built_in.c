@@ -100,7 +100,7 @@ int my_cd(char **commands)
 
 	if (count == 1)
 	{
-		dir = _getenv("HOME");
+		dir = "/root";
 	}
 	else if (commands[1][0] == '-')
 	{
