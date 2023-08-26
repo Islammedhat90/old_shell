@@ -43,6 +43,7 @@ char *get_path(char *command)
 /**
   * handle_path - function that executes the command with path
   * @commands: double pointer holding all commands and arguments.
+  * @count: second argument
   * Return: nothing.
   */
 
@@ -76,7 +77,8 @@ void handle_path(char **commands, int count)
 					int status;
 
 					wait(&status);
-					if (WIFEXITED(status)){
+					if (WIFEXITED(status))
+					{
 						errno = WEXITSTATUS(status);
 						printf("errno is %d\n", errno);
 					}
@@ -85,7 +87,7 @@ void handle_path(char **commands, int count)
 				{
 					perror("fork failed");
 					free(path);
-					print_error(commands[0]); } 
+					print_error(commands[0]); }
 			}
 			else
 			{
