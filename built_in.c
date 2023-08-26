@@ -77,6 +77,7 @@ void my_exit(char **commands, int count)
 		else
 		{
 			print_error(commands[1], count);
+			errno = 2;
 		}
 	}
 	status = errno;
