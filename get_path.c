@@ -78,10 +78,7 @@ void handle_path(char **commands, int count)
 
 					wait(&status);
 					if (WIFEXITED(status))
-					{
 						errno = WEXITSTATUS(status);
-						printf("errno is %d\n", errno);
-					}
 					free(path); }
 				else
 				{
