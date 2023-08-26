@@ -57,7 +57,7 @@ int handle_builtin(int m, char **commands)
 
 /**
   * my_exit - function that implements builtin exit.
-  * @command: holds the exit status to print.
+  * @void: holds the exit status to print.
   * Return: nothing.
   */
 
