@@ -80,7 +80,6 @@ void my_exit(char **commands, int count)
 		}
 	}
 	status = errno;
-	printf("status is %d\n", status);
 	free_arr(commands);
 	exit(status);
 }
