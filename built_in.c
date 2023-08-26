@@ -79,6 +79,7 @@ void my_exit(char **commands, int count)
 			print_error(commands[1], count);
 		}
 	}
+	free_arr(commands);
 	exit(EXIT_SUCCESS);
 }
 

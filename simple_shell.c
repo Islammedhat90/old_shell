@@ -37,16 +37,16 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 		if (operatorcheck(handledline, count) != 0)
 		{
 			commands = com_arr(handledline, " \n\t\r");
-			b = handle_builtin(builtin_checker(commands[0]), commands, count);
+			b = builtin_checker(commands[0]);
 			if (b == -1)
-			{
 				handle_path(commands, count);
+			else
+			{
+				free(handledline);
+				handle_builtin(b, commands, count);
 			}
-			else if (b == 0)
-				break;
 			free_arr(commands); }
 	}
 	free(handledline);
-	if (b == 0)
-	{		my_exit(commands, count);	}
+	my_exit(commands, count);
 	return (0); }
