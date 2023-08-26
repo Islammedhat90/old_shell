@@ -40,7 +40,6 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 			if (b == -1)
 			{
 				handle_path(commands, count);
-		
 			}
 			else if (b == 0)
 			{
@@ -50,7 +49,5 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 	}
 	free(handledline);
 	if (b == 0)
-	{
-		my_exit();
-	}
+	{		my_exit();	}
 	return (0); }
