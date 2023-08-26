@@ -22,6 +22,7 @@ int print_error(char *command, int count)
 		write(STDERR_FILENO, command, lengthOfStr(command));
 		write(STDERR_FILENO, "\n", 1);
 	}
+	free(number);
 	return (0);
 }
 
@@ -44,6 +45,7 @@ void print_commanderr(char *command, int count)
 	write(STDERR_FILENO, ": ", 2);
 	write(2, "not found", lengthOfStr("not found"));
 	write(2, "\n", 1);
+	free(number);
 }
 
 /**
